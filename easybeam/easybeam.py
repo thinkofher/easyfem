@@ -13,7 +13,7 @@ coordinates_array   Tool for creating array with coordinates of beams in tuple
 moments_array       Tool for creating array with values of bending moments
                     of beams in tuple
 shears_array        Tool for creating array with values of shears forces
-                    of beams in tuple      
+                    of beams in tuple
 disps_array         Tool for creating array with values of displacments
                     of beams in tuple
 rotations_array     Tool for creating array with values of rotational angles
@@ -31,8 +31,10 @@ from itertools import chain
 # AGH UST WGiG
 # field of studies: Civil Engineering
 
+
 class No_Data(ValueError):
     pass
+
 
 class Beam:
     # TODO:
@@ -42,31 +44,35 @@ class Beam:
     # 1D Beam Finite Element
 
     def __init__(self, length, youngs_modulus=1, section=False):
-        self.length = length #unit: m
+        self.length = length  # unit: m
         self.youngs_modulus = youngs_modulus
-        self.section = section #units: m
+        self.section = section  # units: m
         self.stifness()
-
 
     def __repr__(self):
 
-        return '{}({},{},{})'.format(__class__.__name__, self.length, self.youngs_modulus, self.section)
+        return '{}({},{},{})'.format(
+            __class__.__name__,
+            self.length,
+            self.youngs_modulus,
+            self.section
+            )
 
     # Stifness matrix for 1D beam element.
     def stifness(self):
 
-        if  self.section:
-            self.area = self.section.area #unit: m^2
-            self.moment_of_inertia_y = self.section.moment_of_inertia_y #unit: m^4
-            self.moment_of_inertia_z = self.section.moment_of_inertia_z #unit: m^4
-            self.elastic_modulus_y = self.section.elastic_modulus_y #unit: m^3
-            self.elastic_modulus_z = self.section.elastic_modulus_z #unit m^3 
+        if self.section:
+            self.area = self.section.area  # unit: m^2
+            self.moment_of_inertia_y = self.section.moment_of_inertia_y  # unit: m^4
+            self.moment_of_inertia_z = self.section.moment_of_inertia_z  # unit: m^4
+            self.elastic_modulus_y = self.section.elastic_modulus_y  # unit: m^3
+            self.elastic_modulus_z = self.section.elastic_modulus_z  #  unit m^3 
         else:
-            self.area = 1 #unit: m^2
-            self.moment_of_inertia_y = 1 #unit: m^4
-            self.moment_of_inertia_z = 1 #unit: m^4
-            self.elastic_modulus_y = 1 #unit: m^3
-            self.elastic_modulus_z = 1 #unit m^3
+            self.area = 1  # unit: m^2
+            self.moment_of_inertia_y = 1  # unit: m^4
+            self.moment_of_inertia_z = 1  # unit: m^4
+            self.elastic_modulus_y = 1  # unit: m^3
+            self.elastic_modulus_z = 1  # unit m^3
 
         try:
             self.stifness_matrix =  ( ( 2*self.youngs_modulus*self.moment_of_inertia_z )/(self.length**3) ) * np.array([[ 6, 3*self.length, -6, 3*self.length ], [3*self.length, 2*self.length**2, -3*self.length, self.length**2], [ -6, -3*self.length, 6, -3*self.length ], [ 3*self.length, self.length**2, -3*self.length, 2*self.length**2 ]])
