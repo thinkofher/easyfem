@@ -51,7 +51,7 @@ class Beam:
         self.stifness()
 
         # some default definitons
-        self.boundaries(
+        self.boundary(
             True,
             False,
             True,
