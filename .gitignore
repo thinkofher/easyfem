@@ -3,3 +3,10 @@
 /easysections/__pycache__
 /easybeam/.ipynb_checkpoints
 /tibijka
+
+# all notebooks
+*ipynb
+/.ipynb_checkpoints
+
+# all pyc files
+*.pyc

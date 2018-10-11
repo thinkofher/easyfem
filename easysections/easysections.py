@@ -1,5 +1,5 @@
 # Simple Sections Classes
-# for Fem_Beam Numerical Calculations
+# for easyfem Numerical Calculations
 # AUTHOR: Beniamin Dudek
 
 from math import pi
@@ -203,10 +203,11 @@ class IBeamSection(Section):
                                             self.flange_thickness,
                                             self.web_thickness
                                             )
+
     def moments_of_inertias(self):
 
         self.moment_of_inertia_y = (1/12) * ( self.width * self.height**3 - ( self.width - self.web_thickness ) * ( self.height - 2 * self.flange_thickness )**3 )
-        self.moment_of_inertia_z = (1/12) * ( 2 * self.flange_thickness * self.width**3 + ( self.height - 2 * self.flange_thickness )*self.web_thickness**3 ) 
+        self.moment_of_inertia_z = (1/12) * ( 2 * self.flange_thickness * self.width**3 + ( self.height - 2 * self.flange_thickness )*self.web_thickness**3 )
 
     def elastic_moduluses(self):
 
