@@ -43,7 +43,10 @@ class RectangleSection(Section):
 
     def __repr__(self):
 
-        return '{}({}, {})'.format(__class__.__name__, self.height, self.width)
+        return '{}({}, {})'.format(
+            __class__.__name__,     # noqa: F821
+            self.height, self.width
+            )
 
     def moments_of_inertias(self):
 
@@ -57,7 +60,7 @@ class RectangleSection(Section):
 
     def rotate(self):
 
-        self.__initial_values__ = ( deepcopy(self.height), deepcopy(self.width) )
+        self.__initial_values__ = (deepcopy(self.height), deepcopy(self.width))
         self.height = self.__initial_values__[1]
         self.width = self.__initial_values__[0]
 
@@ -80,7 +83,7 @@ class CircleSection(Section):
 
     def __repr__(self):
 
-        return '{}({})'.format(__class__.__name__, self.diameter)
+        return '{}({})'.format(__class__.__name__, self.diameter)  # noqa: F821
 
     def moments_of_inertias(self):
 
@@ -109,7 +112,7 @@ class HollowCircle(Section):
     def __repr__(self):
 
         return '{}({},{})'.format(
-            __class__.__name__,
+            __class__.__name__,  # noqa: F821
             self.big_diamater,
             self.small_diamater
             )
@@ -155,7 +158,7 @@ class HollowRectangle(Section):
     def __repr__(self):
 
         return '{}({},{},{})'.format(
-            __class__.__name__,
+            __class__.__name__,  # noqa: F821
             self.outside_height,
             self.outside_width,
             self.thickness
@@ -197,7 +200,7 @@ class IBeamSection(Section):
     def __repr__(self):
 
         return '{}({}, {}, {}, {})'.format(
-                                            __class__.__name__,
+                                            __class__.__name__,  # noqa: F821
                                             self.height,
                                             self.width,
                                             self.flange_thickness,
@@ -206,8 +209,14 @@ class IBeamSection(Section):
 
     def moments_of_inertias(self):
 
-        self.moment_of_inertia_y = (1/12) * ( self.width * self.height**3 - ( self.width - self.web_thickness ) * ( self.height - 2 * self.flange_thickness )**3 )
-        self.moment_of_inertia_z = (1/12) * ( 2 * self.flange_thickness * self.width**3 + ( self.height - 2 * self.flange_thickness )*self.web_thickness**3 )
+        self.moment_of_inertia_y = (1/12) * (
+            self.width * self.height**3 - (self.width - self.web_thickness) *
+            (self.height - 2 * self.flange_thickness)**3
+            )
+        self.moment_of_inertia_z = (1/12) * (
+            2 * self.flange_thickness * self.width**3 +
+            (self.height - 2 * self.flange_thickness)*self.web_thickness**3
+            )
 
     def elastic_moduluses(self):
 

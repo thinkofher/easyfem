@@ -1,9 +1,13 @@
-from easyfem.easybeam.easybeam import (
+from easyfem.easybeam.classes import (
     Beam, BeamSolver,
+)
+
+from easyfem.easybeam.funcs import (
     discretization,
     coordinates_array, momments_array, shears_array,
     disps_array, rotations_array
 )
+
 from easyfem.easybeam import easybeam_visualize
 
 __all__ = [
