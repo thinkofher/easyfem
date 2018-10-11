@@ -42,8 +42,7 @@ def discretization(beam, number_of_elements):
             beam.section
             )
 
-        # declaring boundaries for each element
-        # and loads
+        # declaring boundaries and loads for each element
         if i == 0:
             current_beam.boundary(
                 beam.vertical_1,
